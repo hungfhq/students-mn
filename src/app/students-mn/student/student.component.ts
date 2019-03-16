@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentService } from '../shared/student.service';
-import { ToastrService } from 'ngx-toastr';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -12,7 +11,6 @@ export class StudentComponent implements OnInit {
 
   constructor(
     public studentService: StudentService,
-    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
@@ -24,7 +22,7 @@ export class StudentComponent implements OnInit {
     this.studentService.insertStudent(studentForm.value) :
     this.studentService.updateStudent(studentForm.value);
     this.resetForm(studentForm);
-    this.toastr.success('Submitted Successfully', 'Student Registered');
+    this.studentService.toastr.success('Submitted Successfully', 'Student Registered');
   }
 
   resetForm(studentForm?: NgForm) {

@@ -2,7 +2,8 @@
   <h6 class="text-center">Search student by name</h6>
   <div class="input-group">
     <input type="text" class="form-control" placeholder="Search" #searchBox (input)="search(searchBox.value)"
-      (blur)="delayShowChange()" (focus)="show_ul = 'block'" />
+      (blur)="delayShowChange()" (blur) = "search(' ')" (focus) = "show_ul = 'block'" 
+      />
   </div>
   <ul class="search-result"  [style.display]="show_ul">
     <li *ngFor="let student of (students$ | async)">

@@ -12,7 +12,7 @@ import { Student } from '../shared/student';
 export class SearchComponent implements OnInit {
   studentList: Student[];
   students$: Observable<any[]>;
-  public show_ul = 'none';
+  public show_ul = 'block';
   private searchTerms = new Subject<string>();
 
   constructor(
@@ -22,7 +22,7 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
     this.creatStudentList();
 
-    this.students$ = this.searchTerms.pipe (
+    this.students$ = this.searchTerms.pipe(
       debounceTime(300),
       distinctUntilChanged(),
       switchMap((term: string) => this.searchStudentByName(term))
@@ -44,19 +44,57 @@ export class SearchComponent implements OnInit {
   delayShowChange() {
     setTimeout(() => {
       this.show_ul = 'none';
-    }, 25);
+    }, 10);
   }
 
   search(term: string) {
     this.searchTerms.next(term);
   }
 
+  convertToSimpleChar(str: string) {
+    let characters = str.trim().replace('ă', 'a');
+    characters = characters.replace('â', 'a');
+    characters = characters.replace('đ', 'd');
+    characters = characters.replace('ê', 'e');
+    characters = characters.replace('ơ', 'o');
+    characters = characters.replace('ô', 'o');
+    characters = characters.replace('ư', 'u');
+    return characters;
+  }
+
   searchStudentByName(term: string): Observable<any[]> {
-    if (!term.trim()) {
+    term = term.trim().toLowerCase();
+    if (!term) {
       return of([]);
     }
     return of(this.studentList.filter(s =>
-      s.name.toLowerCase().includes(term.toLowerCase())));
+      s.name.toLowerCase().includes(term)));
   }
-
 }
+
+  // searchStudentByName(term: string): Observable<any[]> {
+  //   let foundStudents: Observable<any[]>;
+  //   term = term.toLowerCase();
+
+  //   const foundList: any = [];
+  //   this.studentList.map(s => {
+  //     const wArr = s.name.split(' ');
+  //     wArr.map(w => {
+  //       if (w.length == term.length) {
+  //         let match = false;
+  //         for (let i = 0; i < w.length; i++) {
+  //           this.convertToSimpleChar(w.toLowerCase()).charAt(i) == term.charAt(i) ?
+  //             match = true : match = false;
+  //         }
+  //         if (match == true) {
+  //           foundList.push(s);
+  //         }
+  //       }
+  //     });
+  //   });
+  //   foundStudents = of(foundList);
+
+  //   return foundStudents;
+
+  // }
+

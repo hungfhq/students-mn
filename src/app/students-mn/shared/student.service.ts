@@ -11,8 +11,8 @@ export class StudentService {
   selectedStudent: Student = new Student();
 
   constructor(
+    public toastr: ToastrService,
     private firebase: AngularFireDatabase,
-    private toastr: ToastrService
     ) { }
 
   getData() {
@@ -46,9 +46,9 @@ export class StudentService {
   }
 
   onDelete(key: string) {
-    if (confirm('Are you sure to delete this record?') === true) {
+    if (confirm('Are you sure to delete this record ?') === true) {
       this.deleteStudent(key);
-      this.toastr.warning('Delete Successfully');
+      this.toastr.warning('Deleted Successfully', 'A student has been remove');
       console.log('do remove');
     }
   }
