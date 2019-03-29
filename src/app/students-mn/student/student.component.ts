@@ -32,6 +32,7 @@ export class StudentComponent implements OnInit {
     this.studentService.selectedStudent = {
       $key: undefined,
       name: '',
+      alias: '',
       gender: '',
       class: '',
       code: 0
