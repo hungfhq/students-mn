@@ -23,7 +23,7 @@ export class SearchComponent implements OnInit {
     this.creatStudentList();
 
     this.students$ = this.searchTerms.pipe(
-      debounceTime(300),
+      debounceTime(400),
       distinctUntilChanged(),
       switchMap((term: string) =>
         this.searchStudentByAlias(term)
@@ -56,7 +56,7 @@ export class SearchComponent implements OnInit {
 
 
   searchStudentByAlias(term: string): Observable<any[]> {
-    term = this.studentService.convertToEnChar(term);
+    term = term.toLowerCase().trim();
     if (!term) {
       return of([]);
     }

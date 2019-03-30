@@ -123,20 +123,29 @@ export class StudentService {
     characters = characters.replace('ữ', 'u');
     characters = characters.replace('ử', 'u');
     characters = characters.replace('ự', 'u');
+
+    characters = characters.replace('ì', 'i');
+    characters = characters.replace('í', 'i');
+    characters = characters.replace('ỉ', 'i');
+    characters = characters.replace('ĩ', 'i');
+    characters = characters.replace('ị', 'i');
     return characters;
   }
 
   convertNameToAlias(name: string) {
     let alias = '';
+    let name_en = '';
     // console.log(name);
     const wArr = this.convertToEnChar(name).split(' ');
     wArr.map(w => {
       alias += w.charAt(0);
     });
     // name = this.convertToEnChar(name).replace(/\s/g, '');
-    name = this.convertToEnChar(name);
+    name_en = this.convertToEnChar(name);
     alias += ' ';
-    alias += name;
+    alias += name_en;
+    alias += ' ';
+    alias += name.toLocaleLowerCase();
     return alias.toString();
 
   }
