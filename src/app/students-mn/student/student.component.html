@@ -3,17 +3,15 @@
   <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="studentService.selectedStudent.$key">
   <div class="form-group">
     <label>Name</label>
-    <input class="form-control" name="name" #name="ngModel" [(ngModel)]="studentService.selectedStudent.name"
-      placeholder="Full Name" required>
+    <input class="form-control" name="name" #name="ngModel" [(ngModel)]="studentService.selectedStudent.name" placeholder="Full Name" required>
   </div>
 
   <div class="form-group">
     <label>Gender</label>
     <!-- <input class="form-control" name="gender" #gender="ngModel"
       [(ngModel)]="studentService.selectedStudent.gender" placeholder="Gender" required> -->
-    <select class="form-control custom-select" id="gender" name="gender" #gender="ngModel"
-      [(ngModel)]="studentService.selectedStudent.gender" required>
-      <option [selected] = "studentService.selectedStudent.gender">Male</option>
+    <select class="form-control custom-select" id="gender" name="gender" #gender="ngModel" [(ngModel)]="studentService.selectedStudent.gender" required>
+      <option [selected]="studentService.selectedStudent.gender">Male</option>
       <option>Female</option>
       <option>Other</option>
     </select>
@@ -21,8 +19,7 @@
 
   <div class="form-group">
     <label>Class</label>
-    <input class="form-control" name="class" #position="ngModel" [(ngModel)]="studentService.selectedStudent.class"
-      placeholder="class" required>
+    <input class="form-control" name="class" #position="ngModel" [(ngModel)]="studentService.selectedStudent.class" placeholder="class" required>
   </div>
   <div class="form-group">
     <label>Code</label>
@@ -30,8 +27,7 @@
       <div class="input-group-prepend">
         <span class="input-group-text"><i class="fa fas fa-hashtag"></i></span>
       </div>
-      <input class="form-control" name="code" #code="ngModel" [(ngModel)]="studentService.selectedStudent.code"
-        placeholder="Code" required>
+      <input class="form-control" name="code" #code="ngModel" [(ngModel)]="studentService.selectedStudent.code" placeholder="Code" required>
     </div>
   </div>
   <div class="form-group">
