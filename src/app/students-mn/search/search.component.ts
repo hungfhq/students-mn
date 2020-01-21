@@ -70,7 +70,9 @@ export class SearchComponent implements OnInit {
       for (let i = 0; i < temp.length - 1; i++) {
         temp[i].forEach(e => {
           if (temp[i + 1].indexOf(e) !== -1) {
-            temp2.push(e);
+            if (temp2.indexOf(e) === -1) {
+              temp2.push(e);
+            }
           }
         })
       }
@@ -110,3 +112,4 @@ export class SearchComponent implements OnInit {
 
 
 }// end class
+
